@@ -80,37 +80,18 @@ The user experience was designed strictly as a **mobile-native premium experienc
 
 ---
 
-## 4. The 4-Week Roadmap
+## 4. Running Locally
 
-If given 4 more weeks to take this from prototype to production, I would prioritize:
-
-1. **Replace Simulation with Real-Time Ingestion:**
-   - Integrate Kafka/Kinesis streams to ingest actual ShareChat feed events (likes, views, shares).
-   - Implement an NER (Named Entity Recognition) pipeline to organically discover and extract trending `#hashtags` from raw Hindi user posts in real-time, completely replacing the static `TOPIC_POOL`.
-2. **Multilingual & Regional Personalization:**
-   - Scale the pipeline to handle all 14+ Indian languages supported by ShareChat.
-   - Introduce GPS/Location-based ranking boosts so users in Mumbai see different trends than users in Delhi.
-3. **Generative AI Integration:**
-   - Hook up a lightweight LLM (e.g., Llama 3 or Gemini Nano) to automatically generate the Hindi descriptions and "AI Summaries" based on the actual content of the trending posts.
-4. **Anti-Spam & Moderation:**
-   - Add a fast classification layer to filter out abuse, NSFW content, or inorganic bot-driven hashtag manipulation before scoring.
-
----
-
-## 5. How to Run & Host
-
-### Local Development
 1. Ensure Python 3.10+ is installed.
 2. From the project root, run:
    ```bash
    python app.py
    ```
-3. Open `http://127.0.0.1:8000` in your browser. The React frontend is bundled directly in the templates via CDN, requiring no Node/NPM build step!
+3. Open `http://localhost:8000` in your browser. The React frontend is bundled directly in the templates via CDN, requiring no Node/NPM build step!
 
-### Hosting Instructions
-Because this is a simple zero-dependency Python server (using the standard library), it can be deployed on **Render** or **Heroku** in minutes:
-1. Create a `requirements.txt` (even if empty) or specify a Python environment.
-2. Push this repo to GitHub.
-3. Connect the repo to Render as a "Web Service".
-4. Set the Start Command to: `python app.py`.
-5. Render will expose it on a public URL.
+## 5. Deployment
+
+This application is configured for easy deployment on **Render**:
+1. Push this repository to GitHub.
+2. Connect your repository to a new Render app.
+3. Deploy the `main` branch. Render will automatically detect the Python environment (via `requirements.txt`) and run the server using the `Procfile`.
