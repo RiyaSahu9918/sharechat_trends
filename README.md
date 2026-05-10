@@ -2,6 +2,8 @@
 
 This repository contains an assignment-ready prototype for automated trending tags in Hindi, built as a sleek, mobile-first React SPA with a Python/SQLite backend.
 
+Loom Walkthrough: https://www.loom.com/share/f17b44c963a54fe9ae9e6c180e99a03b
+
 ## 1. How Our System Decides What's Trending
 
 To ensure high-quality and dynamic trends, the system evaluates topics based on 14 rich metrics. Currently, these metrics are simulated dynamically at run-time to mimic real-time data flow for 40 pre-defined topical candidates.
