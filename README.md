@@ -25,20 +25,19 @@ Our algorithm relies on a highly composite `heatScore` calculated via the follow
 
 ---
 
-## 2. Pipeline Workflow Diagram
+## 2. Current Prototype Pipeline Diagram
 
 ```mermaid
 flowchart TD
     %% Define Nodes
-    subgraph Data Sources [Real-Time Data Ingestion]
-        A1(In-App Events: Clicks/Views)
-        A2(Search Queries: Last 30 mins)
-        A3(External APIs: Twitter/Google)
+    subgraph Data Sources [Data Ingestion]
+        A1(Predefined Topic Pool)
+        A2(Simulated Runtime Metrics)
     end
 
     subgraph Candidate Generation [Candidate Pool]
-        B1{Extract Hashtags via NER}
-        B2[Filter: Hindi & Indian Context]
+        B1{Select Candidates}
+        B2[Apply Hindi Context Data]
     end
 
     subgraph Scoring Engine [Ranking Logic]
@@ -56,7 +55,6 @@ flowchart TD
     %% Define Flow
     A1 --> B1
     A2 --> B1
-    A3 --> B1
     B1 --> B2
     B2 --> C1
     C1 --> C2
@@ -94,6 +92,49 @@ If given 4 more weeks to take this from prototype to production, I would priorit
    - Hook up a lightweight LLM (e.g., Llama 3 or Gemini Nano) to automatically generate the Hindi descriptions and "AI Summaries" based on the actual content of the trending posts.
 4. **Anti-Spam & Moderation:**
    - Add a fast classification layer to filter out abuse, NSFW content, or inorganic bot-driven hashtag manipulation before scoring.
+
+### Proposed Production Pipeline (After 4 Weeks)
+
+```mermaid
+flowchart TD
+    %% Define Nodes
+    subgraph Data Sources [Real-Time Data Ingestion]
+        A1(Kafka: In-App Events)
+        A2(Search Queries: Last 30 mins)
+        A3(External APIs: Twitter/Google)
+    end
+
+    subgraph Candidate Generation [Candidate Pool]
+        B1{NER: Extract Hashtags}
+        B2[Filter: Multilingual & Region]
+    end
+
+    subgraph Scoring Engine [Ranking Logic]
+        C1(Normalize Metrics)
+        C2(Apply Weights: heatScore Formula)
+        C3(Anti-Spam / Diversity Penalty)
+        C4(Gen AI: Content Summary)
+    end
+
+    subgraph Output & Delivery [Client View]
+        D1[(Redis / Real-time DB)]
+        D2[Production Trends API]
+        D3[React Mobile UI]
+    end
+
+    %% Define Flow
+    A1 --> B1
+    A2 --> B1
+    A3 --> B1
+    B1 --> B2
+    B2 --> C1
+    C1 --> C2
+    C2 --> C3
+    C3 --> C4
+    C4 --> D1
+    D1 --> D2
+    D2 --> D3
+```
 
 ---
 
