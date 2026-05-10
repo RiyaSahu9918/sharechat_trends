@@ -106,6 +106,6 @@ If given 4 more weeks to take this from prototype to production, I would priorit
    ```
 3. Open `http://localhost:8000` in your browser. The React frontend is bundled directly in the templates via CDN, requiring no Node/NPM build step!
 
-## 5. Deployment
+## 6. Deployment
 
 This application is currently deployed to Render at: https://sharechat-trends.onrender.com
