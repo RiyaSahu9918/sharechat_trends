@@ -80,7 +80,24 @@ The user experience was designed strictly as a **mobile-native premium experienc
 
 ---
 
-## 4. Running Locally
+## 4. Future Roadmap
+
+If given 4 more weeks to take this from prototype to production, I would prioritize:
+
+1. **Replace Simulation with Real-Time Ingestion:**
+   - Integrate Kafka/Kinesis streams to ingest actual ShareChat feed events (likes, views, shares).
+   - Implement an NER (Named Entity Recognition) pipeline to organically discover and extract trending `#hashtags` from raw Hindi user posts in real-time, completely replacing the static `TOPIC_POOL`.
+2. **Multilingual & Regional Personalization:**
+   - Scale the pipeline to handle all 14+ Indian languages supported by ShareChat.
+   - Introduce GPS/Location-based ranking boosts so users in Mumbai see different trends than users in Delhi.
+3. **Generative AI Integration:**
+   - Hook up a lightweight LLM (e.g., Llama 3 or Gemini Nano) to automatically generate the Hindi descriptions and "AI Summaries" based on the actual content of the trending posts.
+4. **Anti-Spam & Moderation:**
+   - Add a fast classification layer to filter out abuse, NSFW content, or inorganic bot-driven hashtag manipulation before scoring.
+
+---
+
+## 5. Running Locally
 
 1. Ensure Python 3.10+ is installed.
 2. From the project root, run:
