@@ -91,7 +91,4 @@ The user experience was designed strictly as a **mobile-native premium experienc
 
 ## 5. Deployment
 
-This application is configured for easy deployment on **Render**:
-1. Push this repository to GitHub.
-2. Connect your repository to a new Render app.
-3. Deploy the `main` branch. Render will automatically detect the Python environment (via `requirements.txt`) and run the server using the `Procfile`.
+This application is currently deployed to Render at: https://sharechat-trends.onrender.com
